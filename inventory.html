@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Market - Inventory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1B4332",
+                        secondary: "#6c757d",
+                        accent: "#52B788",
+                        light: "#95D5B2",
+                        warning: "#F77F00",
+                        danger: "#D62828",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1B4332;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #52B788;
+            border-radius: 4px;
+        }
+        .nav-link.active {
+            background-color: rgba(82, 183, 136, 0.2);
+            border-left: 4px solid #52B788;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex h-screen overflow-hidden font-sans bg-gray-100">
+        <!-- Sidebar -->
+        <div class="flex flex-col w-64 h-full text-white bg-primary">
+            <div class="p-4 border-b border-accent">
+                <h1 class="text-2xl font-bold text-accent">
+                    <i class="mr-2 fas fa-shopping-basket"></i>Fresh Market
+                </h1>
+                <p class="text-sm text-secondary">Grocery Management</p>
+            </div>
+
+            <nav class="flex-1 py-4 overflow-y-auto">
+                <ul>
+                    <li>
+                        <a href="index.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-chart-line text-accent"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html" class="flex items-center px-4 py-3 transition nav-link active hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-boxes text-accent"></i>
+                            Inventory
+                        </a>
+                    </li>
+                    <li>
+                        <a href="add-item.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-plus-circle text-accent"></i>
+                            Add Item
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-tags text-accent"></i>
+                            Categories
+                        </a>
+                    </li>
+                    <li>
+                        <a href="suppliers.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-truck text-accent"></i>
+                            Suppliers
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="p-4 border-t border-accent">
+                <div class="flex items-center">
+                    <div class="flex items-center justify-center w-10 h-10 font-bold rounded-full bg-accent text-primary">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="font-medium">Store Manager</p>
+                        <p class="text-xs text-secondary">Admin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-y-auto">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-3xl font-bold text-primary">Inventory Management</h2>
+                    <div class="flex space-x-3">
+                        <button class="px-4 py-2 text-sm font-medium transition border border-accent rounded-md text-accent hover:bg-accent hover:text-white">
+                            <i class="mr-2 fas fa-download"></i>Export
+                        </button>
+                        <a href="add-item.html" class="px-4 py-2 text-sm font-medium text-white transition rounded-md bg-accent hover:bg-green-600">
+                            <i class="mr-2 fas fa-plus"></i>Add New Item
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-1 gap-6 mb-6 md:grid-cols-4">
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-accent bg-opacity-10">
+                                <i class="text-accent fas fa-shopping-basket"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-2xl font-bold text-primary">1,847</h3>
+                                <p class="text-sm text-secondary">Total Items</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-green-100">
+                                <i class="text-green-600 fas fa-check-circle"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-2xl font-bold text-primary">1,624</h3>
+                                <p class="text-sm text-secondary">In Stock</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-yellow-100">
+                                <i class="text-yellow-600 fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-2xl font-bold text-warning">23</h3>
+                                <p class="text-sm text-secondary">Low Stock</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-red-100">
+                                <i class="text-red-600 fas fa-times-circle"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-2xl font-bold text-danger">200</h3>
+                                <p class="text-sm text-secondary">Out of Stock</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters and Search -->
+                <div class="p-6 mb-6 bg-white rounded-lg shadow-md">
+                    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                        <div class="flex flex-col gap-4 md:flex-row">
+                            <div class="relative">
+                                <input type="text" placeholder="Search items..." class="w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent md:w-64">
+                                <i class="absolute text-gray-400 fas fa-search left-3 top-3"></i>
+                            </div>
+                            <select class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent">
+                                <option value="">All Categories</option>
+                                <option value="fruits">Fruits</option>
+                                <option value="vegetables">Vegetables</option>
+                                <option value="dairy">Dairy</option>
+                                <option value="bakery">Bakery</option>
+                                <option value="meat">Meat & Poultry</option>
+                                <option value="beverages">Beverages</option>
+                            </select>
+                            <select class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent">
+                                <option value="">All Status</option>
+                                <option value="in-stock">In Stock</option>
+                                <option value="low-stock">Low Stock</option>
+                                <option value="out-of-stock">Out of Stock</option>
+                            </select>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">
+                                <i class="mr-1 fas fa-filter"></i>Filters
+                            </button>
+                            <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">
+                                <i class="mr-1 fas fa-sort"></i>Sort
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inventory Table -->
+                <div class="bg-white rounded-lg shadow-md">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-primary">Current Stock</h3>
+                            <div class="text-sm text-secondary">
+                                Showing <span class="font-medium">1-15</span> of <span class="font-medium">1,847</span> items
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="text-white bg-primary">
+                                <tr>
+                                    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
+                                        <input type="checkbox" class="rounded">
+                                    </th>
+                                    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Item</th>
+                                    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Category</th>
+                                    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Stock</th>
+                                    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Price</th>
+                                    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Status</th>
+                                    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Expiry</th>
+                                    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex items-center justify-center w-10 h-10 mr-3 rounded-full bg-red-100">
+                                                <i class="text-red-500 fas fa-apple-alt"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-medium text-primary">Fresh Apples - Red</div>
+                                                <div class="text-sm text-secondary">Organic, Premium Quality</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap">
+                                        <button class="mr-2 text-accent hover:text-primary" title="Edit Item">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="mr-2 text-warning hover:text-orange-600" title="Restock">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button class="mr-2 text-blue-500 hover:text-blue-700" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-danger hover:text-red-700" title="Remove">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex items-center justify-center w-10 h-10 mr-3 rounded-full bg-orange-100">
+                                                <i class="text-orange-500 fas fa-carrot"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-medium text-primary">Fresh Carrots</div>
+                                                <div class="text-sm text-secondary">Organic, Local Farm</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">Vegetables</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">25 kg</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">$2.20/kg</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs text-green-800 bg-green-100 rounded-full">In Stock</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">2024-01-30</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap">
+                                        <button class="mr-2 text-accent hover:text-primary" title="Edit Item">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="mr-2 text-warning hover:text-orange-600" title="Restock">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button class="mr-2 text-blue-500 hover:text-blue-700" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-danger hover:text-red-700" title="Remove">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex items-center justify-center w-10 h-10 mr-3 rounded-full bg-blue-100">
+                                                <i class="text-blue-500 fas fa-glass-whiskey"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-medium text-primary">Fresh Milk - 1L</div>
+                                                <div class="text-sm text-secondary">Whole Milk, Pasteurized</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">Dairy</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">8 bottles</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">$2.99/bottle</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs text-yellow-800 bg-yellow-100 rounded-full">Low Stock</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">2024-01-22</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap">
+                                        <button class="mr-2 text-accent hover:text-primary" title="Edit Item">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="mr-2 text-warning hover:text-orange-600" title="Restock">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button class="mr-2 text-blue-500 hover:text-blue-700" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-danger hover:text-red-700" title="Remove">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex items-center justify-center w-10 h-10 mr-3 rounded-full bg-yellow-100">
+                                                <i class="text-yellow-500 fas fa-bread-slice"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-medium text-primary">Whole Wheat Bread</div>
+                                                <div class="text-sm text-secondary">Fresh Baked Daily</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">Bakery</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">12 loaves</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">$3.49/loaf</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs text-yellow-800 bg-yellow-100 rounded-full">Low Stock</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">2024-01-20</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap">
+                                        <button class="mr-2 text-accent hover:text-primary" title="Edit Item">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="mr-2 text-warning hover:text-orange-600" title="Restock">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button class="mr-2 text-blue-500 hover:text-blue-700" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-danger hover:text-red-700" title="Remove">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex items-center justify-center w-10 h-10 mr-3 rounded-full bg-yellow-100">
+                                                <i class="text-yellow-600 fas fa-seedling"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-medium text-primary">Organic Bananas</div>
+                                                <div class="text-sm text-secondary">Premium Quality</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">Fruits</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">45 kg</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">$2.89/kg</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs text-green-800 bg-green-100 rounded-full">In Stock</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">2024-01-28</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap">
+                                        <button class="mr-2 text-accent hover:text-primary" title="Edit Item">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="mr-2 text-warning hover:text-orange-600" title="Restock">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button class="mr-2 text-blue-500 hover:text-blue-700" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-danger hover:text-red-700" title="Remove">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex items-center justify-between px-6 py-4 border-t border-gray-200">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-secondary">Rows per page:</span>
+                            <select class="px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-accent">
+                                <option>15</option>
+                                <option>25</option>
+                                <option>50</option>
+                                <option>100</option>
+                            </select>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-1 text-sm font-medium border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                Previous
+                            </button>
+                            <button class="px-3 py-1 text-sm font-medium text-white border border-gray-300 rounded-md bg-accent">
+                                1
+                            </button>
+                            <button class="px-3 py-1 text-sm font-medium border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                2
+                            </button>
+                            <button class="px-3 py-1 text-sm font-medium border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                3
+                            </button>
+                            <button class="px-3 py-1 text-sm font-medium border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>nowrap text-secondary">Fruits</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">5 kg</td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">$3.50/kg</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs text-red-800 bg-red-100 rounded-full">Low Stock</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-secondary">2024-01-25</td>
+                                    <td class="px-6 py-4 text-sm whitespace-

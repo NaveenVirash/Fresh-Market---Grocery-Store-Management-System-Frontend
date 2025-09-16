@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Market - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1B4332",
+                        secondary: "#6c757d",
+                        accent: "#52B788",
+                        light: "#95D5B2",
+                        warning: "#F77F00",
+                        danger: "#D62828",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1B4332;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #52B788;
+            border-radius: 4px;
+        }
+        .nav-link.active {
+            background-color: rgba(82, 183, 136, 0.2);
+            border-left: 4px solid #52B788;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex h-screen overflow-hidden font-sans bg-gray-100">
+        <!-- Sidebar -->
+        <div class="flex flex-col w-64 h-full text-white bg-primary">
+            <div class="p-4 border-b border-accent">
+                <h1 class="text-2xl font-bold text-accent">
+                    <i class="mr-2 fas fa-shopping-basket"></i>Fresh Market
+                </h1>
+                <p class="text-sm text-secondary">Grocery Management</p>
+            </div>
+
+            <nav class="flex-1 py-4 overflow-y-auto">
+                <ul>
+                    <li>
+                        <a href="index.html" class="flex items-center px-4 py-3 transition nav-link active hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-chart-line text-accent"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-boxes text-accent"></i>
+                            Inventory
+                        </a>
+                    </li>
+                    <li>
+                        <a href="add-item.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-plus-circle text-accent"></i>
+                            Add Item
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-tags text-accent"></i>
+                            Categories
+                        </a>
+                    </li>
+                    <li>
+                        <a href="suppliers.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-truck text-accent"></i>
+                            Suppliers
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="p-4 border-t border-accent">
+                <div class="flex items-center">
+                    <div class="flex items-center justify-center w-10 h-10 font-bold rounded-full bg-accent text-primary">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="font-medium">Store Manager</p>
+                        <p class="text-xs text-secondary">Admin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-y-auto">
+            <div class="p-6">
+                <h2 class="mb-6 text-3xl font-bold text-primary">Store Overview</h2>
+
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2 lg:grid-cols-4">
+                    <div class="p-6 bg-white border-l-4 rounded-lg shadow-md border-accent">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-secondary">Total Items</p>
+                                <h3 class="text-3xl font-bold text-primary">1,847</h3>
+                            </div>
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-accent bg-opacity-10">
+                                <i class="text-xl fas fa-shopping-basket text-accent"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-sm font-medium text-green-500">
+                                <i class="mr-1 fas fa-arrow-up"></i> 12.5%
+                            </span>
+                            <span class="ml-2 text-sm text-secondary">vs last month</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-white border-l-4 rounded-lg shadow-md border-warning">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-secondary">Low Stock</p>
+                                <h3 class="text-3xl font-bold text-warning">23</h3>
+                            </div>
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-warning bg-opacity-10">
+                                <i class="text-xl fas fa-exclamation-triangle text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-sm font-medium text-red-500">
+                                <i class="mr-1 fas fa-arrow-down"></i> 3.2%
+                            </span>
+                            <span class="ml-2 text-sm text-secondary">needs attention</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-white border-l-4 rounded-lg shadow-md border-light">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-secondary">Categories</p>
+                                <h3 class="text-3xl font-bold text-primary">12</h3>
+                            </div>
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-light bg-opacity-20">
+                                <i class="text-xl fas fa-tags text-light"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-sm font-medium text-green-500">
+                                <i class="mr-1 fas fa-plus"></i> 2 new
+                            </span>
+                            <span class="ml-2 text-sm text-secondary">this month</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-white border-l-4 rounded-lg shadow-md border-primary">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-secondary">Suppliers</p>
+                                <h3 class="text-3xl font-bold text-primary">8</h3>
+                            </div>
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary bg-opacity-10">
+                                <i class="text-xl fas fa-truck text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-sm font-medium text-green-500">
+                                <i class="mr-1 fas fa-check"></i> All active
+                            </span>
+                            <span class="ml-2 text-sm text-secondary">good status</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="p-6 mb-8 bg-white rounded-lg shadow-md">
+                    <h3 class="mb-6 text-xl font-semibold text-primary">Quick Actions</h3>
+                    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+                        <a href="add-item.html" class="p-6 text-center transition border border-gray-200 rounded-lg hover:bg-accent hover:text-white group">
+                            <i class="mb-3 text-3xl fas fa-plus-circle text-accent group-hover:text-white"></i>
+                            <p class="font-medium">Add New Item</p>
+                        </a>
+                        <a href="inventory.html" class="p-6 text-center transition border border-gray-200 rounded-lg hover:bg-warning hover:text-white group">
+                            <i class="mb-3 text-3xl fas fa-clipboard-list text-warning group-hover:text-white"></i>
+                            <p class="font-medium">Check Inventory</p>
+                        </a>
+                        <a href="categories.html" class="p-6 text-center transition border border-gray-200 rounded-lg hover:bg-light hover:text-white group">
+                            <i class="mb-3 text-3xl fas fa-tag text-light group-hover:text-white"></i>
+                            <p class="font-medium">Manage Categories</p>
+                        </a>
+                        <a href="suppliers.html" class="p-6 text-center transition border border-gray-200 rounded-lg hover:bg-primary hover:text-white group">
+                            <i class="mb-3 text-3xl fas fa-truck text-primary group-hover:text-white"></i>
+                            <p class="font-medium">Supplier Orders</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Recent Activity & Low Stock -->
+                <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    <!-- Recent Activity -->
+                    <div class="p-6 bg-white rounded-lg shadow-md">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-primary">Recent Activity</h3>
+                            <button class="text-accent hover:text-primary">View All</button>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex items-center justify-center w-10 h-10 mt-1 mr-3 rounded-full bg-accent bg-opacity-10">
+                                    <i class="fas fa-plus text-accent"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">New item added</p>
+                                    <p class="text-sm text-secondary">Organic Bananas added to inventory</p>
+                                    <p class="text-xs text-secondary">2 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex items-center justify-center w-10 h-10 mt-1 mr-3 rounded-full bg-warning bg-opacity-10">
+                                    <i class="fas fa-exclamation-triangle text-warning"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Low stock alert</p>
+                                    <p class="text-sm text-secondary">Fresh Milk running low (5 bottles left)</p>
+                                    <p class="text-xs text-secondary">15 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex items-center justify-center w-10 h-10 mt-1 mr-3 rounded-full bg-primary bg-opacity-10">
+                                    <i class="fas fa-truck text-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Supplier delivery</p>
+                                    <p class="text-sm text-secondary">Fresh Farm Co. delivered vegetables</p>
+                                    <p class="text-xs text-secondary">1 hour ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Low Stock Alerts -->
+                    <div class="p-6 bg-white rounded-lg shadow-md">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-primary">Low Stock Alerts</h3>
+                            <span class="px-2 py-1 text-xs text-red-800 bg-red-100 rounded-full">23 items</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 border border-red-200 rounded-lg bg-red-50">
+                                <div class="flex items-center">
+                                    <i class="mr-3 text-red-500 fas fa-apple-alt"></i>
+                                    <div>
+                                        <span class="font-medium">Fresh Apples</span>
+                                        <p class="text-sm text-red-600">Only 5 kg left</p>
+                                    </div>
+                                </div>
+                                <button class="px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600">
+                                    Restock
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between p-3 border border-orange-200 rounded-lg bg-orange-50">
+                                <div class="flex items-center">
+                                    <i class="mr-3 text-orange-500 fas fa-glass-whiskey"></i>
+                                    <div>
+                                        <span class="font-medium">Fresh Milk</span>
+                                        <p class="text-sm text-orange-600">Only 8 bottles left</p>
+                                    </div>
+                                </div>
+                                <button class="px-3 py-1 text-sm text-white bg-orange-500 rounded hover:bg-orange-600">
+                                    Restock
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between p-3 border border-yellow-200 rounded-lg bg-yellow-50">
+                                <div class="flex items-center">
+                                    <i class="mr-3 text-yellow-500 fas fa-bread-slice"></i>
+                                    <div>
+                                        <span class="font-medium">Whole Wheat Bread</span>
+                                        <p class="text-sm text-yellow-600">Only 12 loaves left</p>
+                                    </div>
+                                </div>
+                                <button class="px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">
+                                    Restock
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <a href="inventory.html" class="text-sm text-accent hover:text-primary">View all low stock items →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

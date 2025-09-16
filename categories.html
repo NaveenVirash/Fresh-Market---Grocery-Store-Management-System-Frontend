@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Market - Categories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1B4332",
+                        secondary: "#6c757d",
+                        accent: "#52B788",
+                        light: "#95D5B2",
+                        warning: "#F77F00",
+                        danger: "#D62828",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1B4332;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #52B788;
+            border-radius: 4px;
+        }
+        .nav-link.active {
+            background-color: rgba(82, 183, 136, 0.2);
+            border-left: 4px solid #52B788;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex h-screen overflow-hidden font-sans bg-gray-100">
+        <!-- Sidebar -->
+        <div class="flex flex-col w-64 h-full text-white bg-primary">
+            <div class="p-4 border-b border-accent">
+                <h1 class="text-2xl font-bold text-accent">
+                    <i class="mr-2 fas fa-shopping-basket"></i>Fresh Market
+                </h1>
+                <p class="text-sm text-secondary">Grocery Management</p>
+            </div>
+
+            <nav class="flex-1 py-4 overflow-y-auto">
+                <ul>
+                    <li>
+                        <a href="index.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-chart-line text-accent"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-boxes text-accent"></i>
+                            Inventory
+                        </a>
+                    </li>
+                    <li>
+                        <a href="add-item.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-plus-circle text-accent"></i>
+                            Add Item
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html" class="flex items-center px-4 py-3 transition nav-link active hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-tags text-accent"></i>
+                            Categories
+                        </a>
+                    </li>
+                    <li>
+                        <a href="suppliers.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-truck text-accent"></i>
+                            Suppliers
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="p-4 border-t border-accent">
+                <div class="flex items-center">
+                    <div class="flex items-center justify-center w-10 h-10 font-bold rounded-full bg-accent text-primary">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="font-medium">Store Manager</p>
+                        <p class="text-xs text-secondary">Admin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-y-auto">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-3xl font-bold text-primary">Category Management</h2>
+                    <button class="px-4 py-2 text-sm font-medium text-white transition rounded-md bg-accent hover:bg-green-600" onclick="openAddModal()">
+                        <i class="mr-2 fas fa-plus"></i>Add New Category
+                    </button>
+                </div>
+
+                <!-- Category Stats -->
+                <div class="grid grid-cols-1 gap-6 mb-6 md:grid-cols-4">
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-accent bg-opacity-10">
+                                <i class="text-accent fas fa-tags"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-2xl font-bold text-primary">12</h3>
+                                <p class="text-sm text-secondary">Total Categories</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-green-100">
+                                <i class="text-green-600 fas fa-check-circle"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-2xl font-bold text-primary">10</h3>
+                                <p class="text-sm text-secondary">Active</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-yellow-100">
+                                <i class="text-yellow-600 fas fa-pause-circle"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-2xl font-bold text-warning">2</h3>
+                                <p class="text-sm text-secondary">Inactive</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-blue-100">
+                                <i class="text-blue-600 fas fa-shopping-basket"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-2xl font-bold text-primary">1,847</h3>
+                                <p class="text-sm text-secondary">Total Items</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categories Grid -->
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    <div class="p-6 bg-white border-l-4 rounded-lg shadow-md border-accent">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <div class="flex items-center justify-center w-12 h-12 mr-3 rounded-full bg-red-100">
+                                    <i class="text-2xl text-red-500 fas fa-apple-alt"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-primary">Fruits</h3>
+                                    <span class="px-2 py-1 text-xs text-green-800 bg-green-100 rounded-full">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-sm text-secondary">Fresh seasonal fruits including apples, bananas, oranges, and berries.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm">
+                                <span class="font-medium text-primary">124 items</span>
+                                <span class="text-secondary">• 23 low stock</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-accent rounded-md text-accent hover:bg-accent hover:text-white">
+                                <i class="mr-1 fas fa-edit"></i>Edit
+                            </button>
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                <i class="mr-1 fas fa-eye"></i>View Items
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-white border-l-4 rounded-lg shadow-md border-warning">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <div class="flex items-center justify-center w-12 h-12 mr-3 rounded-full bg-orange-100">
+                                    <i class="text-2xl text-orange-500 fas fa-carrot"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-primary">Vegetables</h3>
+                                    <span class="px-2 py-1 text-xs text-green-800 bg-green-100 rounded-full">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-sm text-secondary">Fresh organic vegetables including carrots, tomatoes, lettuce, and onions.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm">
+                                <span class="font-medium text-primary">89 items</span>
+                                <span class="text-secondary">• 12 low stock</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-accent rounded-md text-accent hover:bg-accent hover:text-white">
+                                <i class="mr-1 fas fa-edit"></i>Edit
+                            </button>
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                <i class="mr-1 fas fa-eye"></i>View Items
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-white border-l-4 rounded-lg shadow-md border-light">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <div class="flex items-center justify-center w-12 h-12 mr-3 rounded-full bg-blue-100">
+                                    <i class="text-2xl text-blue-500 fas fa-glass-whiskey"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-primary">Dairy</h3>
+                                    <span class="px-2 py-1 text-xs text-green-800 bg-green-100 rounded-full">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-sm text-secondary">Milk, cheese, yogurt, butter and other dairy products.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm">
+                                <span class="font-medium text-primary">67 items</span>
+                                <span class="text-secondary">• 8 low stock</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-accent rounded-md text-accent hover:bg-accent hover:text-white">
+                                <i class="mr-1 fas fa-edit"></i>Edit
+                            </button>
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                <i class="mr-1 fas fa-eye"></i>View Items
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-white border-l-4 rounded-lg shadow-md border-primary">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <div class="flex items-center justify-center w-12 h-12 mr-3 rounded-full bg-yellow-100">
+                                    <i class="text-2xl text-yellow-600 fas fa-bread-slice"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-primary">Bakery</h3>
+                                    <span class="px-2 py-1 text-xs text-green-800 bg-green-100 rounded-full">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-sm text-secondary">Fresh baked bread, pastries, cakes and other bakery items.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm">
+                                <span class="font-medium text-primary">45 items</span>
+                                <span class="text-secondary">• 15 low stock</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-accent rounded-md text-accent hover:bg-accent hover:text-white">
+                                <i class="mr-1 fas fa-edit"></i>Edit
+                            </button>
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                <i class="mr-1 fas fa-eye"></i>View Items
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-white border-l-4 rounded-lg shadow-md border-danger">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <div class="flex items-center justify-center w-12 h-12 mr-3 rounded-full bg-red-100">
+                                    <i class="text-2xl text-red-600 fas fa-drumstick-bite"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-primary">Meat & Poultry</h3>
+                                    <span class="px-2 py-1 text-xs text-green-800 bg-green-100 rounded-full">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-sm text-secondary">Fresh meat, poultry, and seafood products.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm">
+                                <span class="font-medium text-primary">78 items</span>
+                                <span class="text-secondary">• 5 low stock</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-accent rounded-md text-accent hover:bg-accent hover:text-white">
+                                <i class="mr-1 fas fa-edit"></i>Edit
+                            </button>
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                <i class="mr-1 fas fa-eye"></i>View Items
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-white border-l-4 rounded-lg shadow-md border-light">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <div class="flex items-center justify-center w-12 h-12 mr-3 rounded-full bg-blue-100">
+                                    <i class="text-2xl text-blue-500 fas fa-wine-bottle"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-primary">Beverages</h3>
+                                    <span class="px-2 py-1 text-xs text-yellow-800 bg-yellow-100 rounded-full">Inactive</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-sm text-secondary">Soft drinks, juices, water, and other beverages.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm">
+                                <span class="font-medium text-primary">156 items</span>
+                                <span class="text-secondary">• 32 low stock</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-accent rounded-md text-accent hover:bg-accent hover:text-white">
+                                <i class="mr-1 fas fa-edit"></i>Edit
+                            </button>
+                            <button class="flex-1 px-3 py-2 text-sm font-medium transition border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                <i class="mr-1 fas fa-eye"></i>View Items
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Category Modal (Hidden by default) -->
+                <div id="addModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+                    <div class="flex items-center justify-center min-h-screen px-4">
+                        <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" onclick="closeAddModal()"></div>
+                        <div class="relative w-full max-w-md p-6 bg-white rounded-lg shadow-xl">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-primary">Add New Category</h3>
+                                <button onclick="closeAddModal()" class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <form>
+                                <div class="mb-4">
+                                    <label class="block mb-2 text-sm font-medium text-primary">Category Name</label>
+                                    <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Enter category name">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-2 text-sm font-medium text-primary">Description</label>
+                                    <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Enter category description"></textarea>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-2 text-sm font-medium text-primary">Icon</label>
+                                    <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent">
+                                        <option>🍎 Apple (Fruits)</option>
+                                        <option>🥕 Carrot (Vegetables)</option>
+                                        <option>🥛 Milk (Dairy)</option>
+                                        <option>🍞 Bread (Bakery)</option>
+                                        <option>🍖 Meat</option>
+                                        <option>🥤 Drink (Beverages)</option>
+                                    </select>
+                                </div>
+                                <div class="mb-6">
+                                    <label class="block mb-2 text-sm font-medium text-primary">Status</label>
+                                    <div class="flex space-x-4">
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" name="status" value="active" checked class="form-radio text-accent">
+                                            <span class="ml-2">Active</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" name="status" value="inactive" class="form-radio text-accent">
+                                            <span class="ml-2">Inactive</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end space-x-3">
+                                    <button type="button" onclick="closeAddModal()" class="px-4 py-2 text-sm font-medium border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white transition rounded-md bg-accent hover:bg-green-600">
+                                        Add Category
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openAddModal() {
+            document.getElementById('addModal').classList.remove('hidden');
+        }
+        
+        function closeAddModal() {
+            document.getElementById('addModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

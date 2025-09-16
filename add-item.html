@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Market - Add Item</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1B4332",
+                        secondary: "#6c757d",
+                        accent: "#52B788",
+                        light: "#95D5B2",
+                        warning: "#F77F00",
+                        danger: "#D62828",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1B4332;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #52B788;
+            border-radius: 4px;
+        }
+        .nav-link.active {
+            background-color: rgba(82, 183, 136, 0.2);
+            border-left: 4px solid #52B788;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex h-screen overflow-hidden font-sans bg-gray-100">
+        <!-- Sidebar -->
+        <div class="flex flex-col w-64 h-full text-white bg-primary">
+            <div class="p-4 border-b border-accent">
+                <h1 class="text-2xl font-bold text-accent">
+                    <i class="mr-2 fas fa-shopping-basket"></i>Fresh Market
+                </h1>
+                <p class="text-sm text-secondary">Grocery Management</p>
+            </div>
+
+            <nav class="flex-1 py-4 overflow-y-auto">
+                <ul>
+                    <li>
+                        <a href="index.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-chart-line text-accent"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-boxes text-accent"></i>
+                            Inventory
+                        </a>
+                    </li>
+                    <li>
+                        <a href="add-item.html" class="flex items-center px-4 py-3 transition nav-link active hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-plus-circle text-accent"></i>
+                            Add Item
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-tags text-accent"></i>
+                            Categories
+                        </a>
+                    </li>
+                    <li>
+                        <a href="suppliers.html" class="flex items-center px-4 py-3 transition nav-link hover:bg-opacity-20 hover:bg-accent">
+                            <i class="mr-3 fas fa-truck text-accent"></i>
+                            Suppliers
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="p-4 border-t border-accent">
+                <div class="flex items-center">
+                    <div class="flex items-center justify-center w-10 h-10 font-bold rounded-full bg-accent text-primary">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="font-medium">Store Manager</p>
+                        <p class="text-xs text-secondary">Admin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-y-auto">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-3xl font-bold text-primary">Add New Item</h2>
+                    <a href="inventory.html" class="px-4 py-2 text-sm font-medium transition border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                        <i class="mr-2 fas fa-arrow-left"></i>Back to Inventory
+                    </a>
+                </div>
+
+                <!-- Add Item Form -->
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <form>
+                        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                            <!-- Left Column -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block mb-2 text-sm font-medium text-primary">Item Name *</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="Enter item name">
+                                </div>
+
+                                <div>
+                                    <label class="block mb-2 text-sm font-medium text-primary">Category *</label>
+                                    <select required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                                        <option value="">Select category</option>
+                                        <option value="fruits">Fruits</option>
+                                        <option value="vegetables">Vegetables</option>
+                                        <option value="dairy">Dairy</option>
+                                        <option value="bakery">Bakery</option>
+                                        <option value="meat">Meat & Poultry</option>
+                                        <option value="beverages">Beverages</option>
+                                        <option value="pantry">Pantry</option>
+                                        <option value="frozen">Frozen Foods</option>
+                                    </select>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block mb-2 text-sm font-medium text-primary">Quantity *</label>
+                                        <input type="number" required min="0" step="0.01" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="0">
+                                    </div>
+                                    <div>
+                                        <label class="block mb-2 text-sm font-medium text-primary">Unit *</label>
+                                        <select required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                                            <option value="">Select unit</option>
+                                            <option value="kg">Kilograms (kg)</option>
+                                            <option value="g">Grams (g)</option>
+                                            <option value="pieces">Pieces</option>
+                                            <option value="liters">Liters</option>
+                                            <option value="ml">Milliliters (ml)</option>
+                                            <option value="packets">Packets</option>
+                                            <option value="bottles">Bottles</option>
+                                            <option value="cans">Cans</option>
+                                            <option value="boxes">Boxes</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block mb-2 text-sm font-medium text-primary">Cost Price *</label>
+                                        <div class="relative">
+                                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">$</span>
+                                            <input type="number" required min="0" step="0.01" class="w-full py-3 pl-8 pr-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block mb-2 text-sm font-medium text-primary">Selling Price *</label>
+                                        <div class="relative">
+                                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">$</span>
+                                            <input type="number" required min="0" step="0.01" class="w-full py-3 pl-8 pr-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block mb-2 text-sm font-medium text-primary">Supplier *</label>
+                                    <select required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                                        <option value="">Select supplier</option>
+                                        <option value="fresh-farm">Fresh Farm Co.</option>
+                                        <option value="green-valley">Green Valley Suppliers</option>
+                                        <option value="local-dairy">Local Dairy Farm</option>
+                                        <option value="city-bakery">City Bakery Supply</option>
+                                        <option value="organic-foods">Organic Foods Ltd.</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Right Column -->
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block mb-2 text-sm font-medium text-primary">SKU/Barcode</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="Enter SKU or barcode">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block mb-2 text-sm font-medium text-primary">Minimum Stock Level</label>
+                                        <input type="number" min="0" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="0">
+                                        <p class="mt-1 text-xs text-secondary">Alert when stock goes below this level</p>
+                                    </div>
+                                    <div>
+                                        <label class="block mb-2 text-sm font-medium text-primary">Maximum Stock Level</label>
+                                        <input type="number" min="0" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="0">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block mb-2 text-sm font-medium text-primary">Manufacturing Date</label>
+                                        <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block mb-2 text-sm font-medium text-primary">Expiry Date</label>
+                                        <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block mb-2 text-sm font-medium text-primary">Location in Store</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="e.g., Aisle 3, Shelf B">
+                                </div>
+
+                                <div>
+                                    <label class="block mb-2 text-sm font-medium text-primary">Status</label>
+                                    <div class="space-y-2">
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" class="form-radio text-accent" name="status" value="active" checked>
+                                            <span class="ml-2">Active</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" class="form-radio text-accent" name="status" value="inactive">
+                                            <span class="ml-2">Inactive</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="form-checkbox text-accent">
+                                        <span class="ml-2 text-sm">Organic Product</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Full Width Fields -->
+                        <div class="mt-6 space-y-4">
+                            <div>
+                                <label class="block mb-2 text-sm font-medium text-primary">Description</label>
+                                <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="Enter detailed description of the item..."></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block mb-2 text-sm font-medium text-primary">Additional Notes</label>
+                                <textarea rows="2" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="Any special handling instructions or notes..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="flex justify-between mt-8">
+                            <button type="button" class="px-6 py-3 text-sm font-medium border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                <i class="mr-2 fas fa-save"></i>Save as Draft
+                            </button>
+                            <div class="space-x-3">
+                                <button type="button" class="px-6 py-3 text-sm font-medium border border-gray-300 rounded-md text-secondary hover:bg-gray-50">
+                                    Cancel
+                                </button>
+                                <button type="submit" class="px-6 py-3 text-sm font-medium text-white transition rounded-md bg-accent hover:bg-green-600">
+                                    <i class="mr-2 fas fa-plus"></i>Add Item
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Quick Add Templates -->
+                <div class="p-6 mt-6 bg-white rounded-lg shadow-md">
+                    <h3 class="mb-4 text-lg font-semibold text-primary">Quick Add Templates</h3>
+                    <p class="mb-4 text-sm text-secondary">Use these templates to quickly add common items with pre-filled data</p>
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+                        <button class="p-4 text-left transition border border-gray-200 rounded-lg hover:border-accent hover:bg-accent hover:bg-opacity-5">
+                            <div class="flex items-center mb-2">
+                                <i class="mr-2 text-red-500 fas fa-apple-alt"></i>
+                                <span class="font-medium">Fruit Template</span>
+                            </div>
+                            <p class="text-sm text-secondary">Pre-filled for fruits with common settings</p>
+                        </button>
